@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1920"
+     height="1080"
+     transform="scale(4, 4)">
+  <g id="points">
+    <circle cx="40" cy="70" style="fill:#ffeeaa" r="5" />
+    <circle cx="70" cy="130" style="fill:#ffeeaa" r="5" />
+    <circle cx="90" cy="40" style="fill:#ffeeaa" r="5" />
+    <circle cx="110" cy="100" style="fill:#ffeeaa" r="5" />
+    <circle id="closest" cx="140" cy="110" style="fill:#aaaaff" r="5" />
+    <circle cx="150" cy="30" style="fill:#ffeeaa" r="5" />
+    <circle cx="160" cy="100" style="fill:#ffeeaa" r="5" />
+  </g>
+  <circle id="pivot" cx="140" cy="90" r="5" style="fill:#d35f5f" />
+</svg>
