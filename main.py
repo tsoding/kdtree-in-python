@@ -45,14 +45,14 @@ svg_tree = read_svg_file('./points2.svg')
 points = get_group_by_id(svg_tree, 'points')
 
 
-def distance(point1, point2):
+def distance_squared(point1, point2):
     x1, y1 = point1
     x2, y2 = point2
 
     dx = x1 - x2
     dy = y1 - y2
 
-    return math.sqrt(dx * dx + dy * dy)
+    return dx * dx + dy * dy
 
 
 def closest_point(all_points, new_point):
@@ -60,7 +60,7 @@ def closest_point(all_points, new_point):
     best_distance = None
 
     for current_point in all_points:
-        current_distance = distance(new_point, current_point)
+        current_distance = distance_squared(new_point, current_point)
 
         if best_distance is None or current_distance < best_distance:
             best_distance = current_distance
@@ -101,7 +101,7 @@ def kdtree_naive_closest_point(root, point, depth=0, best=None):
     next_best = None
     next_branch = None
 
-    if best is None or distance(point, best) > distance(point, root['point']):
+    if best is None or distance_squared(point, best) > distance_squared(point, root['point']):
         next_best = root['point']
     else:
         next_best = best
@@ -121,8 +121,8 @@ def closer_distance(pivot, p1, p2):
     if p2 is None:
         return p1
 
-    d1 = distance(pivot, p1)
-    d2 = distance(pivot, p2)
+    d1 = distance_squared(pivot, p1)
+    d2 = distance_squared(pivot, p2)
 
     if d1 < d2:
         return p1
@@ -152,7 +152,7 @@ def kdtree_closest_point(root, point, depth=0):
                                                 depth + 1),
                            root['point'])
 
-    if distance(point, best) > abs(point[axis] - root['point'][axis]):
+    if distance_squared(point, best) > (point[axis] - root['point'][axis]) ** 2:
         best = closer_distance(point,
                                kdtree_closest_point(opposite_branch,
                                                     point,
