@@ -39,10 +39,6 @@ def get_group_by_id(tree, group_id):
             for circle in get_all_points(group)]
 
 
-svg_tree = read_svg_file('./points2.svg')
-[pivot] = get_point_by_id(svg_tree, 'pivot')
-[closest] = get_point_by_id(svg_tree, 'closest')
-points = get_group_by_id(svg_tree, 'points')
 
 
 def distance_squared(point1, point2):
@@ -87,9 +83,6 @@ def build_kdtree(points, depth=0):
         'left': build_kdtree(sorted_points[:n / 2], depth + 1),
         'right': build_kdtree(sorted_points[n/2 + 1:], depth + 1)
     }
-
-
-kdtree = build_kdtree(points)
 
 
 def kdtree_naive_closest_point(root, point, depth=0, best=None):
@@ -160,3 +153,23 @@ def kdtree_closest_point(root, point, depth=0):
                                best)
 
     return best
+
+svg_files = ['./points.svg', './points2.svg']
+for svg_file in svg_files:
+    print svg_file
+    svg_tree = read_svg_file(svg_file)
+    [pivot] = get_point_by_id(svg_tree, 'pivot')
+    [expected] = get_point_by_id(svg_tree, 'closest')
+    points = get_group_by_id(svg_tree, 'points')
+    kdtree = build_kdtree(points)
+
+    found = kdtree_closest_point(kdtree, pivot)
+
+    expected_distance = math.sqrt(distance_squared(pivot, expected))
+    found_distance = math.sqrt(distance_squared(pivot, found))
+
+    print "  Expected: %s (distance: %f)" % (expected, expected_distance)
+    print "  Found:    %s (distance: %f)" % (found, found_distance)
+
+    if found_distance > expected_distance:
+        print "  ----- FAILURE! FOUND WORSE DISTANCE! -----"
