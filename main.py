@@ -155,7 +155,7 @@ def kdtree_closest_point(root, point, depth=0):
 
     return best
 
-svg_files = ['./points.svg', './points2.svg']
+svg_files = ['./points.svg', './points2.svg', './points3.svg']
 for svg_file in svg_files:
     print(svg_file)
     svg_tree = read_svg_file(svg_file)
