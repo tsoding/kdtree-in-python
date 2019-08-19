@@ -79,9 +79,9 @@ def build_kdtree(points, depth=0):
     sorted_points = sorted(points, key=lambda point: point[axis])
 
     return {
-        'point': sorted_points[n / 2],
-        'left': build_kdtree(sorted_points[:n / 2], depth + 1),
-        'right': build_kdtree(sorted_points[n/2 + 1:], depth + 1)
+        'point': sorted_points[n // 2],
+        'left': build_kdtree(sorted_points[:n // 2], depth + 1),
+        'right': build_kdtree(sorted_points[n // 2 + 1:], depth + 1)
     }
 
 
@@ -156,7 +156,7 @@ def kdtree_closest_point(root, point, depth=0):
 
 svg_files = ['./points.svg', './points2.svg']
 for svg_file in svg_files:
-    print svg_file
+    print(svg_file)
     svg_tree = read_svg_file(svg_file)
     [pivot] = get_point_by_id(svg_tree, 'pivot')
     [expected] = get_point_by_id(svg_tree, 'closest')
@@ -168,8 +168,8 @@ for svg_file in svg_files:
     expected_distance = math.sqrt(distance_squared(pivot, expected))
     found_distance = math.sqrt(distance_squared(pivot, found))
 
-    print "  Expected: %s (distance: %f)" % (expected, expected_distance)
-    print "  Found:    %s (distance: %f)" % (found, found_distance)
+    print("  Expected: %s (distance: %f)" % (expected, expected_distance))
+    print("  Found:    %s (distance: %f)" % (found, found_distance))
 
     if found_distance > expected_distance:
-        print "  ----- FAILURE! FOUND WORSE DISTANCE! -----"
+        print("  ----- FAILURE! FOUND WORSE DISTANCE! -----")

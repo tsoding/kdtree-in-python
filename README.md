@@ -3,4 +3,10 @@
 
 https://www.youtube.com/playlist?list=PLguYJK7ydFE7R7KqRRVXw23kOrn6jiwqi
 
-Doesn't work with Python 3. Python 2 is required.
+## Quick Start
+
+Install Python 3
+
+```console
+$ python main.py   # Perform the tests
+```
