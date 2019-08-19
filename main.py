@@ -1,6 +1,7 @@
 import math
 import xml.etree.ElementTree as ET
 import pprint
+import sys
 
 
 CIRCLE_TAG_NAME = '{http://www.w3.org/2000/svg}circle'
@@ -173,3 +174,4 @@ for svg_file in svg_files:
 
     if found_distance > expected_distance:
         print("  ----- FAILURE! FOUND WORSE DISTANCE! -----")
+        sys.exit(1)
